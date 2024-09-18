@@ -1,0 +1,16 @@
+<h3> Your Follower posts highlights </h3>
+<% @follower_posts%>
+<% if @follower_posts.any? %>
+    <% @follower_posts.each do |blog_post|%>
+    <div>
+      <h2><%= link_to blog_post.title, "/blog_posts/#{blog_post.id}" %> </h2>
+    <div>
+<% end %>
+<% end %>
+
+<style type="text/css">
+  img {
+    width: 250px;
+    height: auto;
+  }
+</style>

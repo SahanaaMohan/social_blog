@@ -1,0 +1,10 @@
+<h1>Welcome to Medium Scheduled posts!</h1>
+<% @blog_posts.each do |blog_post|%>
+<div>
+    <h3><%= link_to blog_post.title, "/blog_posts/#{blog_post.id}" %> </h3>
+        <%= image_tag blog_post.cover_image if blog_post.cover_image.present? %>
+   <h4> <%= blog_post.content%><h4>
+    <h4> Schedule time at: </h4>
+    <%= blog_post.published_at%>
+</div>
+<%end%>

@@ -1,0 +1,36 @@
+<%= t '.welcome' %>
+          <%= form_for :search, url: search_path, method: :get do |f| %>
+            <%= f.text_field :q %>
+            <%= f.submit t '.search', name: nil %>
+          <% end %>
+<% @rec_blog_posts.each do |blog_post|%>
+<div>
+    <h2><%= link_to blog_post.title, "/blog_posts/#{blog_post.id}" %> </h2>
+    <%= image_tag blog_post.cover_image if blog_post.cover_image.present? %>
+    <%= blog_post.content%>
+    <p id="blog_post_<%= blog_post.id %>blog_posts/_likes"><%= render partial: "blog_posts/likes", locals: {blog_post: blog_post} %></p>
+    <div>
+  <% end %>
+
+</div>
+<%= t '.tags' %>
+  <% if user_signed_in? %>
+    <div class="following-tags">
+      <% @following_tags.each do |tag| %>
+         <%= link_to tag.name, main_app.interest_path(tag.id)%>
+    <% end %>
+    </div>
+<%end%>
+<%= render 'dashboards/show_follow' , follower_posts: @follower_posts %>
+ <%= link_to "See all recommendations", users_recommended_posts_path %>
+ 
+<div class="my-16">
+  <%== pagy_nav(@pagy) %>
+</div>
+
+<style type="text/css">
+  img {
+    width: 250px;
+    height: auto;
+  }
+</style>

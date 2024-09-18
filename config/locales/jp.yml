@@ -1,0 +1,29 @@
+# config/locales/ja.yml
+---
+ja:
+  activerecord:
+    attributes:
+      user:
+        email: email@
+        username: username@
+    model:
+      user: Users
+  back: Back
+  date:
+    formats:
+      default: "%m/%d/%Y"
+      short: "%m/%d"
+  edit: Edit
+  greetings: Hello guest!
+  users:
+    show:
+      greetings: Go aisatsu!
+      welcome: Purofīru pēji e yōkoso
+      instructions: Yūzā no shōsai wa koko ni arimasu. Pasuwādo o kōshin suru ni wa, hōmupēji no yūzā no henshū ni idō shite kudasai
+      email: 電子メール
+      username: Yūzā-mei
+  dashboards:
+    show:
+      welcome: ブログ ダッシュボードへようこそ!
+      search: Kensaku
+      tags: フォローしているタグ

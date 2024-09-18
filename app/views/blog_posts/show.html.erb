@@ -1,0 +1,52 @@
+<%= link_to "Edit Blog Post",edit_blog_post_path(@blog_post) if user_signed_in?%></br></br></br>
+
+  <%= form_for :search, url: search_path, method: :get do |f| %>
+            <%= f.text_field :q %>
+            <%= f.submit 'Search', name: nil %>
+          <% end %>
+
+<%= image_tag @blog_post.cover_image if @blog_post.cover_image.present? %>
+
+<h2><%= @blog_post.title%> </h2>
+    <%= @blog_post.content%>
+
+  <% if @blog_post.user == current_user %>
+    <h4>Other Content</h4>
+      <%= @blog_post.body  %>
+    <% end %>
+
+    <%= form_for [@blog_post, @response] do |f| %>
+      <div class="form-group">
+        <%= f.text_area :body, class: "form-control", placeholder: "Write a response ..." %>
+        <%= f.submit "Publish" %>
+      </div>
+    <% end %>
+    <% if @blog_post.responses.any? %>
+      <%= render @blog_post.responses %>
+    <% end %>
+    <% @blog_post.tags.each do |tag| %>
+        <%= link_to tag.name, main_app.tags_path(tag)%>
+  <% end %>
+
+<div id="blog_post_<%= @blog_post.id %>_likes">
+  <%= render partial: "likes", locals: {blog_post: @blog_post} %>
+</div>
+
+<div id="blog_post_<%= @blog_post.id %>_bookmarks">
+  <%= render partial: "bookmarks", locals: {blog_post: @blog_post} %>
+</div>
+
+<% if @blog_post.user == current_user %>
+    <%= button_to "Ask AI to update post",
+    blog_post_openai_blog_post_path(@blog_post),method: :put, remote: true %>
+
+<%= button_to "Publish AI updated post",
+    edit_blog_post_openai_blog_post_path(@blog_post),method: :put, remote: true %>
+    <% end %>
+
+<style type="text/css">
+  img {
+    width: 250px;
+    height: auto;
+  }
+</style>

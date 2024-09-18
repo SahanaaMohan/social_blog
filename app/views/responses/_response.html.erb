@@ -1,0 +1,15 @@
+<div class="response">
+  <div class="post-metadata">
+    <div class="post-info">
+       <%= link_to response.user.username, main_app.user_path(response.user) %>
+      <small><%= time_ago_in_words(response.created_at) %> ago</small>
+    </div>
+  </div>
+
+  <%= response.body %>
+
+  <%= button_to "Ask AI to Respond",
+    blog_post_response_openai_responses_path(@blog_post, response),
+    class: "btn btn-sm btn-outline-primary" %>
+
+</div>

@@ -1,0 +1,23 @@
+:verbose: true
+:timeout: 25
+:queues:
+  - critical
+  - default
+  - low
+  - [mailer, 5]
+  - [default, 3]
+  - [carrierwave, 3]
+  - [development_mailer, 5]
+development:
+  :concurrency: 5
+:scheduler:
+  :schedule:
+    user_activity_scheduler:
+      cron: '0 0 * * *'   
+      class: "UserActivityScheduler"
+    post_publish_scheduler:
+      cron: '0 0 * * *'   # Runs once per day
+      class: "PostPublishScheduler"
+    follower_activity_scheduler:
+      cron: '0 0 * * *'   
+      class: "FollowerActivityScheduler"

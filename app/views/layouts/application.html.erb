@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blogmvc</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true%>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+   </head>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <body>
+    <div>
+       <a class="nav-link active" aria-current="page" href="/">Home</a></br>
+      <% if user_signed_in?%>
+       <%= link_to pluralize(Notification.unread_count(current_user), 'Notification'), notifications.notifications_path %>
+       </br>
+      <%= link_to "Create Post", main_app.new_blog_post_path%></br>
+      <%= link_to link_to User.model_name.human, main_app.user_path(current_user.id )%></br>
+      <%= link_to "Update user Details", main_app.edit_user_registration_path%></br>
+      <%= button_to "Log Out", main_app.destroy_user_session_path, method: :delete%></br>
+      <%else%>
+      <%= link_to "Log In", main_app.new_user_session_path%>
+      <%= link_to "Sign Up", main_app.new_user_registration_path%>
+      <%end%>
+      </div>
+   <%= content_tag(:div, "", data: {controller: "room"}) %>
+
+<%= content_tag :li do %>
+  <%= link_to 'Switch to English', locale: :en %>
+<% end unless current_page?(locale: :en) %>
+
+<%= content_tag :li do %>
+  <%= link_to 'Switch to Japanese', locale: :ja %>
+<% end unless current_page?(locale: :ja) %>
+
+<%= content_tag :li do %>
+  <%= link_to 'Switch to Spanish', locale: :es %>
+<% end unless current_page?(locale: :es) %>
+
+     <% if admin_signed_in? %>
+        <%= button_to 'Sign Out as Admin', main_app.destroy_admin_session_path, method: :delete %> |
+      <% elsif !user_signed_in? %>
+        <%= link_to "Sign In as Admin", main_app.new_admin_session_path %> |
+      <% end %>
+<%= yield %>
+  </body>
+</html>
+

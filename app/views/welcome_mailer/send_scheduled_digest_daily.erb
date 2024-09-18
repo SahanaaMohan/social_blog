@@ -1,0 +1,15 @@
+<h4>Your Scheduled Posts from medium blog!</h4>
+<div>
+    <table>
+    <tr>
+    <th>Title </th>
+    <th>Cover image </th>\
+    <th>Content </th>
+    <th>Schedule time </th>
+  </tr>
+    <td><%= link_to @blog_post.title, "/blog_posts/#{@blog_post.id}" %> </td>
+    <td><%= image_tag @blog_post.cover_image if @blog_post.cover_image.present? %></td>
+    <td><%= @blog_post.content%></td>
+    <td><%= @blog_post.published_at%></td>
+    </table>
+</div>

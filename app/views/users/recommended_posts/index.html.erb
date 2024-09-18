@@ -1,0 +1,9 @@
+  <h4 >Recommended by </h4>
+<% @recommended_posts.each do |blog_post|%>
+<div>
+    <h2><%= link_to blog_post.title, "/blog_posts/#{blog_post.id}" %> </h2>
+    <%= image_tag blog_post.cover_image if blog_post.cover_image.present? %>
+    <%= blog_post.content%>
+    <p id="blog_post_<%= blog_post.id %>blog_posts/_likes"><%= render partial: "blog_posts/likes", locals: {blog_post: blog_post} %></p>
+    <div>
+  <% end %>

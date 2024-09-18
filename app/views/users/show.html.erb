@@ -1,0 +1,46 @@
+<div>
+  <%= t '.greetings' %>
+  <%= t '.welcome' %></br>
+  <%= t '.instructions' %></br>
+
+<%= t '.email' %>
+<h5><%= @user.username%></h5>
+<%= t '.username'%>
+<h5><%= @user.username%></h5>
+<%= pluralize(@user.followers.size, "follower") %>
+<%= pluralize(@user.following.size, "following") %>
+</div>
+<% if user_signed_in? & current_user.following?(@user) %>
+<%= button_to "Unfollow", main_app.relationship_path(@relationship), method: :delete %>
+<% else %>
+  <%= button_to "Follow", main_app.relationships_path(followed_id: @user.id) %>
+<% end %>
+
+<% current_user.blog_posts.published.each do |blog_post|%>
+<div>
+    <h2><%= link_to blog_post.title, "/blog_posts/#{blog_post.id}" %> </h2>
+    <%= image_tag blog_post.cover_image if blog_post.cover_image.present? %>
+    <%= blog_post.content%>
+    <p id="blog_post_<%= blog_post.id %>blog_posts/_likes"><%= render partial: "blog_posts/likes", locals: {blog_post: blog_post} %></p>
+    <div>
+  <% end %>
+
+  <% current_user.blog_posts.draft.each do |blog_post|%>
+<div>
+    <h2><%= link_to blog_post.title, "/blog_posts/#{blog_post.id}" %> </h2>
+      <div class="p-2 rounded bg-gray-100 text-gray-900">Draft</div>
+    <%= image_tag blog_post.cover_image if blog_post.cover_image.present? %>
+    <%= blog_post.content%>
+    <p id="blog_post_<%= blog_post.id %>blog_posts/_likes"><%= render partial: "blog_posts/likes", locals: {blog_post: blog_post} %></p>
+    <div>
+  <% end %>
+
+  <% current_user.blog_posts.scheduled.each do |blog_post|%>
+<div>
+    <h2><%= link_to blog_post.title, "/blog_posts/#{blog_post.id}" %> </h2>
+      <div class="p-2 rounded bg-gray-100 text-gray-900">Scheduled</div>
+    <%= image_tag blog_post.cover_image if blog_post.cover_image.present? %>
+    <%= blog_post.content%>
+    <p id="blog_post_<%= blog_post.id %>blog_posts/_likes"><%= render partial: "blog_posts/likes", locals: {blog_post: blog_post} %></p>
+    <div>
+  <% end %>

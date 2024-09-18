@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @room.name %>
+</p>
+
+<div data-behavior='messages' data-room-id='<%= @room.id %>'>
+  <% @messages.each do |message| %>
+    <%= render message %>
+  <% end %>
+</div>
+
+<%= form_for [@room, Message.new] do |f| %>
+  <%= f.text_area :content, rows: 1, class: "form-control", autofocus: true %>
+ <%= f.button %>
+<% end %>

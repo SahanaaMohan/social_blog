@@ -1,0 +1,1 @@
+$("#blog_post_<%= @blog_post.id %>_likes").html("<%=j render partial: "blog_posts/likes", locals: {blog_post: @blog_post} %>");

@@ -1,0 +1,6 @@
+<% feed.blog_posts.each do |blog_post| %>
+  <% if feed.following_author?(blog_post) %>
+    Published by <%= link_to blog_post.username, blog_post.user %>
+  <% end %>
+  <%= render partial: 'blog_posts/blog_post', locals: { blog_post: blog_post } %>
+<% end %>

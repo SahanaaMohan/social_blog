@@ -1,0 +1,29 @@
+# config/locales/ja.yml
+---
+es:
+  activerecord:
+    attributes:
+      user:
+        email: email@
+        username: username@
+    model:
+      user: Users
+  back: Back
+  date:
+    formats:
+      default: "%m/%d/%Y"
+      short: "%m/%d"
+  edit: Edit
+  greetings: Hello guest!
+  users:
+    show:
+      greetings: Hola invitada
+      welcome: Bienvenido a la página de perfil
+      instructions: Los detalles del usuario están aquí. Para actualizar la contraseña, vaya a editar usuario en la página de inicio.
+      email: correo electrónico
+      username: nombre de usuario
+  dashboards:
+    show:
+      welcome: ¡Bienvenido al Panel de Blogs!
+      search: buscar
+      tags: Etiquetas que sigues

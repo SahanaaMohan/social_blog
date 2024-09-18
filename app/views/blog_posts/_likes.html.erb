@@ -1,0 +1,6 @@
+<% if user_signed_in? && current_user.likes?(blog_post) %>
+  <%= button_to "Unlike", blog_post_likes_path(blog_post), method: :delete, remote: true %>
+<% else %>
+  <%= button_to "Like", blog_post_likes_path(blog_post), method: :post, remote: true %>
+<% end %>
+<%= blog_post.likes.count %>

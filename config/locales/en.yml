@@ -1,0 +1,30 @@
+# config/locales/en.yml
+---
+en:
+  activerecord:
+    attributes:
+      user:
+        email: email@
+        username: username@
+    model:
+      user: Users
+  back: Back
+  date:
+    formats:
+      default: "%m/%d/%Y"
+      short: "%m/%d"
+  edit: Edit
+  greetings: Hello guest!
+  users:
+    show:
+      greetings: Hello user!
+      instructions: User details are here, to update password go to edit user in Homepage
+      welcome: Welcome to profile page
+      email: EMail
+      username: username
+  dashboards:
+    show:
+      welcome: Welcome to Blog Dashboard!
+      search: Search
+      tags: Tags you follow
+
