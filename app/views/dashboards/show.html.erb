@@ -17,7 +17,7 @@
   <% if user_signed_in? %>
     <div class="following-tags">
       <% @following_tags.each do |tag| %>
-         <%= link_to tag.name, main_app.interest_path(tag.id)%>
+         <%= link_to tag.name, main_app.tag_path(tag.id)%>
     <% end %>
     </div>
 <%end%>

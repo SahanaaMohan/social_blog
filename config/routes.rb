@@ -52,6 +52,8 @@ end
     resources :users, :only =>[:show]
   
 root "blog_posts#index"
+  post    "interests" => "interests#create"
+  delete  "interests" => "interests#destroy"
   match '/users',   to: 'users#index',   via: 'get'
   match '/users/:id',     to: 'users#show',       via: 'get'
   match '/blog_posts/:blog_post_id/openai/blog_posts/:id/edit',to: 'openai/blog_posts#edit',via: 'put'
@@ -69,9 +71,6 @@ root "blog_posts#index"
     resource :room_users
     resources :messages
     resources :following_tags, only: [:index]
-    post    "interests" => "interests#create"
-    delete  "interests" => "interests#destroy"
-
   end
 end
 end
